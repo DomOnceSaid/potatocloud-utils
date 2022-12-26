@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+    maven {
+        url = uri('https://maven.pkg.github.com/DomOnceSaid/java-totp-fork')
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.security:spring-security-core:6.0.1'
+    implementation 'dev.potato.totp:totp:1.7.1'
+}
+
+group = 'org.potatocloud'
+version = '0.0.1-SNAPSHOT'
+description = 'potato cloud'
+java.sourceCompatibility = JavaVersion.VERSION_17
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/DomOnceSaid/potatocloud-utils")
+            credentials {
+                username = System.getenv("GIT_PUBLISH_USER")
+                password = System.getenv("GIT_PACKAGE_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

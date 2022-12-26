@@ -28,14 +28,14 @@ public class TOTPHelper {
         return verifier.isValidCode(secret, totpCode);
     }
 
-    public static InputStream generateQRasFile(String appName, String label, String secret) throws QrGenerationException {
+    public static InputStream generateQRasFile(String issuer, String label, String secret, Integer digit, Integer period) throws QrGenerationException {
         QrData data = new QrData.Builder()
-                .label("example@example.com")
+                .label(label)
                 .secret(secret)
-                .issuer("AppName")
+                .issuer(issuer)
                 .algorithm(HashingAlgorithm.SHA1) // More on this below
-                .digits(6)
-                .period(30)
+                .digits(digit)
+                .period(period)
                 .build();
         QrGenerator generator = new ZxingPngQrGenerator();
         byte[] imageData = generator.generate(data);

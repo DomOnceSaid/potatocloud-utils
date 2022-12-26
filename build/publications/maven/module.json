@@ -1,0 +1,76 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.potatocloud",
+    "module": "potatocloud-utils",
+    "version": "0.0.1-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "potatocloud-utils-0.0.1-SNAPSHOT.jar",
+          "url": "potatocloud-utils-0.0.1-SNAPSHOT.jar",
+          "size": 5511,
+          "sha512": "a81b558d98d607078dd03153e2b5c80958613886bc8c395d25e63b40266b4352cc9dd5c097b8e04d83eb0136faa729caea1cf583e0788491a43a89fb7f1afc9c",
+          "sha256": "7285b816851985694902b262978fede6b008f0d4c29fdc8a60310f524e0bd9fe",
+          "sha1": "6136154a943caaebf74ddc4d88e31bc31160c88e",
+          "md5": "f6e7fb4224d2f4d3052ed4c7fab3848c"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.security",
+          "module": "spring-security-core",
+          "version": {
+            "requires": "6.0.1"
+          }
+        },
+        {
+          "group": "dev.potato.totp",
+          "module": "totp",
+          "version": {
+            "requires": "1.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "potatocloud-utils-0.0.1-SNAPSHOT.jar",
+          "url": "potatocloud-utils-0.0.1-SNAPSHOT.jar",
+          "size": 5511,
+          "sha512": "a81b558d98d607078dd03153e2b5c80958613886bc8c395d25e63b40266b4352cc9dd5c097b8e04d83eb0136faa729caea1cf583e0788491a43a89fb7f1afc9c",
+          "sha256": "7285b816851985694902b262978fede6b008f0d4c29fdc8a60310f524e0bd9fe",
+          "sha1": "6136154a943caaebf74ddc4d88e31bc31160c88e",
+          "md5": "f6e7fb4224d2f4d3052ed4c7fab3848c"
+        }
+      ]
+    }
+  ]
+}
