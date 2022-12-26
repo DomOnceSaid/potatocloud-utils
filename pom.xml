@@ -4,7 +4,7 @@
 
   <groupId>org.potatocloud</groupId>
   <artifactId>potatocloud-utils</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <distributionManagement>
     <repository>
@@ -13,9 +13,6 @@
       <url>https://maven.pkg.github.com/DomOnceSaid/potatocloud-utils</url>
     </repository>
   </distributionManagement>
-
-
-
   <name>potato cloud</name>
 
   <properties>
@@ -36,8 +33,6 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-
-
   </repositories>
 
   <dependencies>
