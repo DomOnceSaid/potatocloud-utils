@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
   <distributionManagement>
     <repository>
-      <id>potato cloud</id>
+      <id>potatocloud-utils</id>
       <name>potato cloud util</name>
       <url>https://maven.pkg.github.com/DomOnceSaid/potatocloud-utils</url>
     </repository>
