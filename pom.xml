@@ -9,7 +9,7 @@
   <distributionManagement>
     <repository>
       <id>potato cloud</id>
-      <name>jBCrypt hashing</name>
+      <name>potato cloud util</name>
       <url>https://maven.pkg.github.com/DomOnceSaid/potatocloud-utils</url>
     </repository>
   </distributionManagement>
@@ -29,18 +29,5 @@
       <version>6.0.1</version>
     </dependency>
 
-    <dependency>
-      <groupId>de.taimos</groupId>
-      <artifactId>totp</artifactId>
-      <version>1.0</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>
