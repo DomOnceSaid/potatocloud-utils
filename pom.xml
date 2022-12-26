@@ -4,7 +4,7 @@
 
   <groupId>org.potatocloud</groupId>
   <artifactId>potatocloud</artifactId>
-  <version>0.4.1</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
   <distributionManagement>
     <repository>
@@ -28,6 +28,8 @@
       <artifactId>spring-security-core</artifactId>
       <version>6.0.1</version>
     </dependency>
-
   </dependencies>
+
+
+
 </project>
