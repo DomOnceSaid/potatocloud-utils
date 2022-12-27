@@ -1,4 +1,4 @@
-package org.potatocloud.encryption;
+package org.potatocloud.encryption.model;
 
 public class RSAKey {
     private String publicKey;

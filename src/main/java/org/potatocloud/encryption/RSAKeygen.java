@@ -1,5 +1,7 @@
 package org.potatocloud.encryption;
 
+import org.potatocloud.encryption.model.RSAKey;
+
 import java.security.*;
 import java.util.Base64;
 
