@@ -3,11 +3,12 @@
   <groupId>org.potatocloud</groupId>
   <artifactId>potatocloud-utils</artifactId>
   <versioning>
-    <latest>0.0.1-SNAPSHOT</latest>
+    <latest>0.0.2-SNAPSHOT</latest>
     <versions>
       <version>0.0.1-SNAPSHOT</version>
       <version>0.0.1</version>
+      <version>0.0.2-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20221226152435</lastUpdated>
+    <lastUpdated>20221227030129</lastUpdated>
   </versioning>
 </metadata>

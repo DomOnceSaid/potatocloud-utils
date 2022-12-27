@@ -19,7 +19,7 @@ dependencies {
 }
 
 group = 'org.potatocloud'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 description = 'potato cloud'
 java.sourceCompatibility = JavaVersion.VERSION_17
 
