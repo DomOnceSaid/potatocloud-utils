@@ -1,15 +1,11 @@
-package org.potatocloud.s3;
+package org.potatocloud.storage;
 
 import io.minio.*;
-import io.minio.errors.*;
 import io.minio.messages.Bucket;
-import org.potatocloud.basic.Print;
+import org.potatocloud.console.Print;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class MinioBucket {

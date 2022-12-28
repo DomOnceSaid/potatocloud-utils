@@ -2,8 +2,8 @@ package org.potatocloud.manual_test;
 
 import org.potatocloud.encryption.RSAKeygen;
 import org.potatocloud.encryption.model.RSAKey;
-import org.potatocloud.s3.MinioBucket;
-import org.potatocloud.totp.TOTPHelper;
+import org.potatocloud.storage.MinioBucket;
+import org.potatocloud.authentication.TOTPHelper;
 
 import java.io.*;
 import java.nio.file.Files;

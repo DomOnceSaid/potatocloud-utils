@@ -1,7 +1,7 @@
 package org.potatocloud.file;
 
 import org.apache.commons.compress.utils.IOUtils;
-import org.potatocloud.basic.Print;
+import org.potatocloud.console.Print;
 import org.springframework.util.Base64Utils;
 
 import java.io.*;

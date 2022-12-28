@@ -1,4 +1,4 @@
-package org.potatocloud.totp;
+package org.potatocloud.authentication;
 
 import dev.potato.totp.code.*;
 import dev.potato.totp.exceptions.QrGenerationException;
@@ -10,7 +10,7 @@ import dev.potato.totp.secret.DefaultSecretGenerator;
 import dev.potato.totp.secret.SecretGenerator;
 import dev.potato.totp.time.SystemTimeProvider;
 import dev.potato.totp.time.TimeProvider;
-import org.potatocloud.basic.Print;
+import org.potatocloud.console.Print;
 
 import java.io.ByteArrayInputStream;
 

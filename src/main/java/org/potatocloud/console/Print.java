@@ -1,4 +1,4 @@
-package org.potatocloud.basic;
+package org.potatocloud.console;
 
 public class Print {
 
