@@ -12,14 +12,11 @@ import java.util.List;
 import org.potatocloud.encryption.model.RSAKey;
 import org.potatocloud.s3.MinioBucket;
 import org.potatocloud.totp.TOTPHelper;
+import org.potatocloud.validator.Email;
 
 @SuppressWarnings({"SpellCheckingInspection", "unused"})
 public class PotatoCloud {
-
-    private static final String MINIO_SECRET = System.getenv("MINIO_SECRET");
     public static void  main (String[] args) {
-        Print.ln(MINIO_SECRET);
-        System.exit(0);
     }
 
     private static void testUpload() {
@@ -29,7 +26,7 @@ public class PotatoCloud {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e.getMessage());
         }
-
+        String MINIO_SECRET = System.getenv("MINIO_SECRET");
         MinioBucket minioBucket = new MinioBucket()
                 .endpoint("http://192.168.75.128:9000")
                 .accessKey("admin")
