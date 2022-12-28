@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class FileUtil {
 
-    public InputStream openFile(String path) {
+    public static InputStream openFile(String path) {
         try {
             return new FileInputStream(path);
         } catch (FileNotFoundException e) {
