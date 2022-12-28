@@ -5,20 +5,22 @@ import dev.potato.totp.exceptions.QrGenerationException;
 import dev.potato.totp.qr.QrData;
 import dev.potato.totp.qr.QrGenerator;
 import dev.potato.totp.qr.ZxingPngQrGenerator;
+import dev.potato.totp.recovery.RecoveryCodeGenerator;
 import dev.potato.totp.secret.DefaultSecretGenerator;
 import dev.potato.totp.secret.SecretGenerator;
 import dev.potato.totp.time.SystemTimeProvider;
 import dev.potato.totp.time.TimeProvider;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
+
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static dev.potato.totp.util.Utils.getDataUriForImage;
 
 public class TOTPHelper {
+
+    private static final int DEFAULT_RECOVERY_AMOUNT = 12;
+
     public static String generateSecret() {
         SecretGenerator secretGenerator = new DefaultSecretGenerator();
         return secretGenerator.generate();
@@ -30,7 +32,15 @@ public class TOTPHelper {
         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
         return verifier.isValidCode(secret, totpCode);
     }
+    public static String[] generateBackupKey(Integer number) {
+        RecoveryCodeGenerator recoveryCodes = new RecoveryCodeGenerator();
+        return recoveryCodes.generateCodes(number);
+    }
 
+    public static String[] generateBackupKey() {
+        RecoveryCodeGenerator recoveryCodes = new RecoveryCodeGenerator();
+        return recoveryCodes.generateCodes(DEFAULT_RECOVERY_AMOUNT);
+    }
     public static InputStream generateQRasFile(String issuer, String label, String secret, Integer digit, Integer period) throws QrGenerationException {
         QrData data = new QrData.Builder()
                 .label(label)
@@ -45,7 +55,7 @@ public class TOTPHelper {
         return new ByteArrayInputStream(imageData);
     }
 
-    public static byte[] generateQRasByte(String issuer, String label, String secret, Integer digit, Integer period) throws QrGenerationException {
+    public static byte[] generateQRasByte(String issuer, String label, String secret, Integer digit, Integer period) {
         QrData data = new QrData.Builder()
                 .label(label)
                 .secret(secret)
@@ -55,7 +65,11 @@ public class TOTPHelper {
                 .period(period)
                 .build();
         QrGenerator generator = new ZxingPngQrGenerator();
-        return generator.generate(data);
+        try {
+            return generator.generate(data);
+        } catch (QrGenerationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static String generateQRasBase64(String issuer, String label, String secret, Integer digit, Integer period) throws QrGenerationException {

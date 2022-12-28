@@ -4,12 +4,14 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class PasswordEncoder {
 
+    private static final int GENSALT_DEFAULT_LOG2_ROUNDS = 12;
+
     public static String generateSalt(Integer logsRound) {
         return BCrypt.gensalt(logsRound);
     }
 
     public static String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+        return BCrypt.hashpw(password, BCrypt.gensalt(GENSALT_DEFAULT_LOG2_ROUNDS));
     }
 
     public static String hashPassword(String password, String salt) {

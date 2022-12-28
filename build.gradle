@@ -16,13 +16,14 @@ repositories {
 dependencies {
     implementation 'org.springframework.security:spring-security-core:6.0.1'
     implementation 'dev.potato.totp:totp:1.7.1'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.1'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     implementation("io.minio:minio:8.4.6")
 }
 
 group = 'org.potatocloud'
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 description = 'potato cloud'
 java.sourceCompatibility = JavaVersion.VERSION_17
 
