@@ -10,6 +10,7 @@ import dev.potato.totp.secret.DefaultSecretGenerator;
 import dev.potato.totp.secret.SecretGenerator;
 import dev.potato.totp.time.SystemTimeProvider;
 import dev.potato.totp.time.TimeProvider;
+import org.potatocloud.basic.Print;
 
 import java.io.ByteArrayInputStream;
 
@@ -41,7 +42,7 @@ public class TOTPHelper {
         RecoveryCodeGenerator recoveryCodes = new RecoveryCodeGenerator();
         return recoveryCodes.generateCodes(DEFAULT_RECOVERY_AMOUNT);
     }
-    public static InputStream generateQRasFile(String issuer, String label, String secret, Integer digit, Integer period) throws QrGenerationException {
+    public static InputStream generateQRasFile(String issuer, String label, String secret, Integer digit, Integer period) {
         QrData data = new QrData.Builder()
                 .label(label)
                 .secret(secret)
@@ -51,7 +52,12 @@ public class TOTPHelper {
                 .period(period)
                 .build();
         QrGenerator generator = new ZxingPngQrGenerator();
-        byte[] imageData = generator.generate(data);
+        byte[] imageData;
+        try {
+            imageData = generator.generate(data);
+        } catch (QrGenerationException e) {
+            throw new RuntimeException(e);
+        }
         return new ByteArrayInputStream(imageData);
     }
 
@@ -72,19 +78,24 @@ public class TOTPHelper {
         }
     }
 
-    public static String generateQRasBase64(String issuer, String label, String secret, Integer digit, Integer period) throws QrGenerationException {
-        QrData data = new QrData.Builder()
-                .label(label)
-                .secret(secret)
-                .issuer(issuer)
-                .algorithm(HashingAlgorithm.SHA1) // More on this below
-                .digits(digit)
-                .period(period)
-                .build();
-        QrGenerator generator = new ZxingPngQrGenerator();
-        byte[] imageData = generator.generate(data);
-        String mimeType = generator.getImageMimeType();
-        return getDataUriForImage(imageData, mimeType);
+    public static String generateQRasBase64(String issuer, String label, String secret, Integer digit, Integer period) {
+        try {
+            QrData data = new QrData.Builder()
+                    .label(label)
+                    .secret(secret)
+                    .issuer(issuer)
+                    .algorithm(HashingAlgorithm.SHA1) // More on this below
+                    .digits(digit)
+                    .period(period)
+                    .build();
+            QrGenerator generator = new ZxingPngQrGenerator();
+            byte[] imageData = generator.generate(data);
+            String mimeType = generator.getImageMimeType();
+            return getDataUriForImage(imageData, mimeType);
+        } catch (Exception e) {
+            Print.ln("error: " + e.getMessage());
+        }
+        return null;
     }
 
 //    byte[] buffer = TOTPHelper.generateQRasByte(
