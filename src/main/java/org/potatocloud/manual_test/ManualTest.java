@@ -23,6 +23,8 @@ public class ManualTest {
             throw new RuntimeException(e.getMessage());
         }
         String MINIO_SECRET = System.getenv("MINIO_SECRET");
+        String MINIO_ENDPOINT = System.getenv("MINIO_ENDPOINT");
+
         MinioBucket minioBucket = new MinioBucket()
                 .endpoint("http://192.168.75.128:9000")
                 .accessKey("admin")
