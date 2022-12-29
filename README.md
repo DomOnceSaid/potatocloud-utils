@@ -1,4 +1,4 @@
-General Purpose Toolkit for my Any Project
+General Purpose Toolkit for Any Java Project
 ===============================================================
 > 
 
