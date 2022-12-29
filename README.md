@@ -10,10 +10,10 @@ General Purpose Toolkit for Any Java Project
 * http request helper (TODO)
 * Image resizer (TODO)
 * Push notification (TODO)
-* Server send event (TODO)
 * Password Hash/Compare (BCrypt)
 * Object converter (TODO)
 * Minio bucket
 * Validator (Email) (more in wishlist)
-* Websocket Helper (TODO)
-* Task scheduler (TODO)
+* <del>Websocket Helper (TODO) </del>
+* <del>Server send event (TODO)</del>
+* <del>Task scheduler (TODO) </del>
