@@ -3,7 +3,7 @@ package org.potatocloud.manual_test;
 import org.potatocloud.console.Print;
 import org.potatocloud.encryption.FileEncryptor;
 import org.potatocloud.encryption.RSAKeygen;
-import org.potatocloud.encryption.model.RSAKey;
+import org.potatocloud.encryption.model.Key;
 import org.potatocloud.file.FileUtil;
 import org.potatocloud.storage.MinioBucket;
 import org.potatocloud.authentication.TOTPHelper;
@@ -46,24 +46,15 @@ public class ManualTest {
         }
     }
     private static void TestGeneratorRSAKey() {
-        RSAKey keys = RSAKeygen.rsaKeygen();
+        Key keys = RSAKeygen.rsaKeygen();
         System.out.println(keys);
     }
 
     private static void TestEncryptionDecryption() {
-        {
-            RSAKey key = RSAKeygen.rsaKeygen();
-            TestGenerateQR();
-            try {
-                InputStream file = FileUtil.openFile("src/main/resources/targetFile.png");
-                InputStream encrypted = FileEncryptor.encryptFile(file, key.publicKey());
-                Files.write(Path.of("src/main/resources/targetFileEncrypted"), FileUtil.fileToByteArray(encrypted));
-                InputStream fileEncrypted = FileUtil.openFile("src/main/resources/targetFileEncrypted");
-                InputStream decrypted = FileEncryptor.decryptFile(fileEncrypted, key.privateKey());
-                Files.write(Path.of("src/main/resources/targetFileDecrypted.png"), FileUtil.fileToByteArray(decrypted));
-            } catch (IOException e) {
-                Print.ln(e.getMessage());
-            }
-        }
+        TestGenerateQR();
+        String key =  "YmMFsmgAAczRmWRqhF8a18SWAtuAAXWAZoJkdthlYlU=";// AESKeygen.generateKey();
+        Print.ln(key);
+        String enc = FileEncryptor.encryptFile(key, new File("src/main/resources/targetFile.png"));
+        String dec = FileEncryptor.decryptFile(key, new File(enc), "png");
     }
 }

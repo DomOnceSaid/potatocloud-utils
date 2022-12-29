@@ -1,12 +1,12 @@
 package org.potatocloud.encryption.model;
 
-public class RSAKey {
+public class Key {
     private String publicKey;
     private String privateKey;
 
-    public RSAKey() {}
+    public Key() {}
 
-    public RSAKey(String privateKey, String publicKey) {
+    public Key(String privateKey, String publicKey) {
         this.privateKey = privateKey;
         this.publicKey = publicKey;
     }
