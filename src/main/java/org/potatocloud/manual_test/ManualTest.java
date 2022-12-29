@@ -18,7 +18,7 @@ import java.nio.file.Path;
 @SuppressWarnings({ "SpellCheckingInspection", "unused" })
 public class ManualTest {
 
-	private static void testUpload() {
+	public static void testUpload() {
 		InputStream file;
 		try {
 			file = new FileInputStream("src/main/resources/targetFile.png");
@@ -29,13 +29,13 @@ public class ManualTest {
 		String MINIO_SECRET = System.getenv("MINIO_SECRET");
 		String MINIO_ENDPOINT = System.getenv("MINIO_ENDPOINT");
 
-		MinioBucket minioBucket = new MinioBucket().endpoint("http://192.168.75.128:9000").accessKey("admin")
+		MinioBucket minioBucket = new MinioBucket().endpoint(MINIO_ENDPOINT).accessKey("admin")
 				.secretKey(MINIO_SECRET).bucket("testbucket1");
 
 		minioBucket.upload(file, "test/", "test1.png", "image/png");
 	}
 
-	private static void TestGenerateQR() {
+	public static void TestGenerateQR() {
 		byte[] buffer = TOTPHelper.generateQRasByte("dom", "dom@mai.com", "hasdbasihbdiasbdiasbd", 6, 30);
 		File targetFile = new File("src/main/resources/targetFile.tmp");
 		try {
@@ -46,7 +46,7 @@ public class ManualTest {
 		}
 	}
 
-	private static void TestGeneratorRSAKey() {
+	public static void TestGeneratorRSAKey() {
 		Key keys = RSAKeygen.rsaKeygen();
 		System.out.println(keys);
 	}

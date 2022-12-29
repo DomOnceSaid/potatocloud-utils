@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import com.google.common.base.Splitter;
-
 public class RSAFileEncryptor {
 
 	private static final Integer CHUNK_SIZE = 200;
@@ -22,7 +20,7 @@ public class RSAFileEncryptor {
 			String[] encrypted = new String[split.length];
 			int index = 0;
 			for (String s : split) {
-				encrypted[index] = RSAStringEncryptor.encrypt(split[index], publicKey);
+				encrypted[index] = RSAStringEncryptor.encrypt(s, publicKey);
 				index++;
 			}
 			return encrypted;
@@ -32,11 +30,22 @@ public class RSAFileEncryptor {
 		}
 	}
 
+	public static String[] encrypt(String publicKey, String base64) {
+		String[] split = base64.split("(?<=\\G.{" + CHUNK_SIZE + "})");
+		String[] encrypted = new String[split.length];
+		int index = 0;
+		for (String s : split) {
+			encrypted[index] = RSAStringEncryptor.encrypt(s, publicKey);
+			index++;
+		}
+		return encrypted;
+	}
+
 	public static String decrypt(String privateKey, String[] inputFile) {
 		int index = 0;
 		StringBuilder decrypted = new StringBuilder();
 		for (String s : inputFile) {
-			decrypted.append(RSAStringEncryptor.decrypt(inputFile[index], privateKey));
+			decrypted.append(RSAStringEncryptor.decrypt(s, privateKey));
 			index++;
 		}
 		return decrypted.toString();
