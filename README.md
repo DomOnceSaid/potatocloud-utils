@@ -14,6 +14,6 @@ General Purpose Toolkit for Any Java Project
 * Password Hash/Compare (BCrypt)
 * Object converter (TODO)
 * Minio bucket
-* Validator (Email. more in wishlist)
+* Validator (Email) (more in wishlist)
 * Websocket Helper (TODO)
 * Task scheduler (TODO)
