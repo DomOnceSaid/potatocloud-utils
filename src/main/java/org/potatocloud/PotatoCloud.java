@@ -11,6 +11,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class PotatoCloud {
-    public static void  main (String[] args) throws IOException {
-    }
+
+	public static void main(String[] args) throws IOException {
+	}
+
 }
