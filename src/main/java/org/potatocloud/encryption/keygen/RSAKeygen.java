@@ -1,4 +1,4 @@
-package org.potatocloud.encryption;
+package org.potatocloud.encryption.keygen;
 
 import org.potatocloud.encryption.model.Key;
 

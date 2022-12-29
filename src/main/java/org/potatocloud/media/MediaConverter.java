@@ -1,5 +1,7 @@
 package org.potatocloud.media;
 
+import org.potatocloud.media.model.Media;
+
 public class MediaConverter {
 
     public static Media converter(String originalBase64) {

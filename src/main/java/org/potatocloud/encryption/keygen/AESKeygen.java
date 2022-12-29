@@ -1,14 +1,10 @@
-package org.potatocloud.encryption;
+package org.potatocloud.encryption.keygen;
 
-import org.potatocloud.console.Print;
-import org.potatocloud.encryption.model.Key;
 import org.springframework.util.Base64Utils;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
-
-import static org.potatocloud.encryption.RSAKeygen.encodeKey;
 
 public class AESKeygen {
 

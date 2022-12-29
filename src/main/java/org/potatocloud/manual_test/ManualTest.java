@@ -1,14 +1,17 @@
 package org.potatocloud.manual_test;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 import org.potatocloud.console.Print;
-import org.potatocloud.encryption.FileEncryptor;
-import org.potatocloud.encryption.RSAKeygen;
+import org.potatocloud.encryption.encryptor.asymmetric.RSAFileEncryptor;
+import org.potatocloud.encryption.encryptor.symmetric.AESFileEncryptor;
+import org.potatocloud.encryption.keygen.RSAKeygen;
 import org.potatocloud.encryption.model.Key;
-import org.potatocloud.file.FileUtil;
 import org.potatocloud.storage.MinioBucket;
 import org.potatocloud.authentication.TOTPHelper;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -50,11 +53,32 @@ public class ManualTest {
         System.out.println(keys);
     }
 
-    private static void TestEncryptionDecryption() {
+    public static void TestEncryptionDecryption() {
         TestGenerateQR();
         String key =  "YmMFsmgAAczRmWRqhF8a18SWAtuAAXWAZoJkdthlYlU=";// AESKeygen.generateKey();
         Print.ln(key);
-        String enc = FileEncryptor.encryptFile(key, new File("src/main/resources/targetFile.png"));
-        String dec = FileEncryptor.decryptFile(key, new File(enc), "png");
+        String enc = AESFileEncryptor.encryptFile(key, new File("src/main/resources/targetFile.png"));
+        String dec = AESFileEncryptor.decryptFile(key, new File(enc), "png");
+    }
+
+    public static void TestAsymetricFileEncryption() {
+        try {
+            TestGenerateQR();
+            Key keys = RSAKeygen.rsaKeygen();
+            byte[] encoded = Base64.encodeBase64(FileUtils.readFileToByteArray(new File("src/main/resources/targetFile.png")));
+            String base64 = new String(encoded, StandardCharsets.US_ASCII);
+
+            String[] encrypted = RSAFileEncryptor.encrypt(keys.publicKey(), new File("src/main/resources/targetFile.png"));
+            String decrypted = RSAFileEncryptor.decrypt(keys.privateKey(), encrypted);
+
+            if (base64.equals(decrypted)) {
+                Print.ln("passed");
+            } else {
+                Print.ln("failed");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

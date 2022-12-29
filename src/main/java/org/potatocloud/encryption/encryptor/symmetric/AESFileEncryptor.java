@@ -1,4 +1,4 @@
-package org.potatocloud.encryption;
+package org.potatocloud.encryption.encryptor.symmetric;
 
 import org.potatocloud.console.Print;
 
@@ -6,17 +6,16 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import javax.crypto.spec.SecretKeySpec;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
-import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Calendar;
 
 @SuppressWarnings({"SpellCheckingInspection", "unused"})
-public class FileEncryptor {
+public class AESFileEncryptor {
 
 //    public static File encryptFile(String aesKey, File inputFile) {
 //        try {
@@ -82,6 +81,7 @@ public class FileEncryptor {
 
     public static String encryptFile(String aesKey, File inputFile) {
         try {
+            createTempDirectory();
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
             byte[] decodedKey = Base64.getDecoder().decode(aesKey);
             SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
@@ -137,6 +137,14 @@ public class FileEncryptor {
         } catch (Exception e) {
             Print.ln("Decryption error : " + e.getMessage());
             throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private static void createTempDirectory() {
+        try {
+            Files.createDirectories(Paths.get("src/main/resources/temp"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -1,4 +1,4 @@
-package org.potatocloud.encryption;
+package org.potatocloud.encryption.encryptor.asymmetric;
 
 
 import java.security.KeyFactory;
@@ -11,7 +11,7 @@ import java.util.Base64;
 
 import javax.crypto.Cipher;
 
-public class StringEncryptor {
+public class RSAStringEncryptor {
 
     public static String encrypt(String content, String publicKey) {
         try {

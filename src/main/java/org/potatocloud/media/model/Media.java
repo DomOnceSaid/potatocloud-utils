@@ -1,4 +1,4 @@
-package org.potatocloud.media;
+package org.potatocloud.media.model;
 
 import java.util.Arrays;
 
